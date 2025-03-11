@@ -1,6 +1,6 @@
 class Cargo:
-    def __init__(self, weight: int) -> None:
-        self.weight = weight
+    def __init__(self, weight: int | None = None) -> None:
+        self.weight = weight or None
 
 
 class BaseRobot:
@@ -65,6 +65,7 @@ class DeliveryDrone(FlyingRobot):
     def hook_load(self, cargo: Cargo) -> None:
         if self.current_load is None and cargo.weight <= self.max_load_weight:
             self.current_load = cargo
+        return
 
     def unhook_load(self) -> None:
         self.current_load = None
